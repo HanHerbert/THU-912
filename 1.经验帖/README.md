@@ -36,11 +36,15 @@
 
 ## 2019
 
+[**2019双非应届生 上岸 清华计算机专业课和复试心得**](http://www.cskaoyan.com/thread-653961-1-1.html)
+
 [**从关山口到五道口（2019年清华计算机考研全程回顾+经验+总结）**](https://blog.csdn.net/zee_chao/article/details/88909444)
 
 [**关于清华计算机专业基础综合（912）的复习**](https://xuanxuanblingbling.github.io/life/study/2018/12/29/912/)
 
 ## 2018
+
+[**2018清华计算机考研经验贴_复试细节和初试准备**](http://www.cskaoyan.com/thread-649195-1-1.html)
 
 ### 常见问题解答
 
