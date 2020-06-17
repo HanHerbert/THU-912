@@ -292,3 +292,60 @@ T& Vector::operator[] ( Rank r ) const //重载下标操作符
 此后对外的V[r]对应内部V._elem[r]
 **右值**：T x = V[r] + U[s] * W[t];
 **左值**：V[r] = (T)(2*x + 3)
+
+### 2.插入
+
+```c++
+template <typename T> //e作为秩为r元素插入
+Rank Vector<T>::insert(Rank r, T const & e){
+	expand(); //如有必要，扩容
+	for (int i=_size; i>r; i--)
+		_elem[i] = _elem[i-1]; //后继元素顺次后移一个单元
+	_elem[r] = e; _size++;
+	return r; //返回秩
+}
+```
+
+### 3.区间删除
+
+```c++
+template <typename T> //e作为秩为r元素插入
+Rank Vector<T>::insert(Rank r, T const & e){
+	expand(); //如有必要，扩容
+	for (int i=_size; i>r; i--)
+		_elem[i] = _elem[i-1]; //后继元素顺次后移一个单元
+	_elem[r] = e; _size++;
+	return r; //返回秩
+}
+```
+
+### 4.单元素删除
+
+即区间删除的特例：[r] = [r, r+1)
+
+```c++
+template <typename T> //删除向量中秩为r的元素
+T Vector<T>::remove(Rank r){
+	T e = _elem[r]; //备份被删除元素
+	remove(r,r+1);
+	return e;
+}
+```
+
+### 5.查找
+
+**无序向量**：T为可判等的基本类型，或已重载操作符"==“或”!="
+**有序向量**：T为可比较的基本类型，或已重载操作符"<“或”>"
+
+```c++
+template <typename T>
+Rank Vector<T>::find(T const & e, Rank lo, Rank hi) const{
+	while((lo < hi--) && (e!=_elem[hi]));
+	return hi;
+}
+```
+
+### Question：能否反复调用remove(r)实现remove(lo,hi)呢？
+
+**删除单元素**每次循环耗时正比于删除区间的后缀长度 = n - hi = O(n)，循环次数等于区间宽度=hi - lo = O(n)，如此将导致**O(n^2)**的复杂度。
+
